@@ -16,7 +16,7 @@ type timestamp struct{
 	timezone int
 }
 
-func settimestamp() {
+func Settimestamp() {
 	isnow :=time.Now()
 	fmt.Println(isnow)
 	
