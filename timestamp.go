@@ -15,11 +15,10 @@ type timestamp struct{
 	second int
 	timezone int
 }
-
+// Settimestamp : Sets computer's timestamp as functions timestamp
 func Settimestamp() {
 	isnow :=time.Now()
 	fmt.Println(isnow)
-	
 }
 func changeyear(tms *timestamp, year int) (err error) {
 	if year <0 || year > 10000{
@@ -35,7 +34,8 @@ func changemonth(tms *timestamp, month int) (err error) {
 	tms.month = month
 	return
 }
-func changeday(tms *timestamp, day int) (err error) {
+// Changeday : Testing porpose
+func Changeday(tms *timestamp, day int) (err error) {
 	daylimit := 28
 	switch tms.month {
 		case 1,3,5,7,8,10,12:
