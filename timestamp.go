@@ -3,72 +3,73 @@ package timestamp
 import(
 "fmt"
 "time"
-"errors"
 )
-
-type timestamp struct{
-	year int
-	month int
-	day int
-	hour int
-	minute int
-	second int
-	timezone int
+// TimeStp struct with date, hour and timezone
+type TimeStp struct{
+	Year int
+	Month int
+	Day int
+	Hour int
+	Minute int
+	Second int
+	Timezone int
 }
-// Settimestamp : Sets computer's timestamp as functions timestamp
+// Settimestamp : It sets function's timestamp values igual to computer's timestamp.
 func Settimestamp() {
 	isnow :=time.Now()
 	fmt.Println(isnow)
 }
-func changeyear(tms *timestamp, year int) (err error) {
+func changeyear(tms *TimeStp, year int) (err error) {
 	if year <0 || year > 10000{
-		return errors.New(fmt.Sprintf("can't change year to %d",year))
+//		return errors.New(fmt.Sprintf("can't change year to %d",year))
+		return fmt.Errorf("can't change year to %d",year)
 	}
-	tms.year = year
+	tms.Year = year
 	return
 }
-func changemonth(tms *timestamp, month int) (err error) {
+func changemonth(tms *TimeStp, month int) (err error) {
 	if month <1 || month > 12{
-		return errors.New(fmt.Sprintf("can't change month to %d",month))
+//		return errors.New(fmt.Sprintf("can't change month to %d",month))
+		return fmt.Errorf("can't change month to %d",month)
 	}
-	tms.month = month
+	tms.Month = month
 	return
 }
 // Changeday : Testing porpose
-func Changeday(tms *timestamp, day int) (err error) {
+func Changeday(tms *TimeStp, day int) (err error) {
 	daylimit := 28
-	switch tms.month {
+	switch tms.Month {
 		case 1,3,5,7,8,10,12:
 			daylimit += 3
 		case 4,6,9,11,13:
 			daylimit += 2
 		case 2:
-			daylimit += (int(tms.year%4)^1)
+			daylimit += (int(tms.Year%4)^1)
 	}
 	if day <0 || day > daylimit {
-		return errors.New(fmt.Sprintf("can't change day to %d",day))
+		return fmt.Errorf("can't change day to %d",day)
 	}
-	tms.day = day
+	tms.Day = day
 	return
 }
-func changehour(tms *timestamp, hour int) (err error) {
+func changehour(tms *TimeStp, hour int) (err error) {
 	if hour <0 || hour > 23{
-		return errors.New(fmt.Sprintf("can't change hour to %d",hour))
+		return fmt.Errorf("can't change hour to %d",hour)
 	}
-	tms.hour = hour
+	tms.Hour = hour
 	return
 }
-func changeminute(tms *timestamp, minute int) (err error) {
+func changeminute(tms *TimeStp, minute int) (err error) {
 	if minute <0 || minute > 59{
-		return errors.New(fmt.Sprintf("can't change minute to %d",minute))
+		return fmt.Errorf("can't change minute to %d",minute)
 	}
-	tms.minute = minute
+	tms.Minute = minute
 	return
 }
-func changesecond(tms *timestamp, second int) (err error) {
+func changesecond(tms *TimeStp, second int) (err error) {
 	if second <0 || second > 59{
-		return errors.New(fmt.Sprintf("can't change second to %d",second))
+		return fmt.Errorf("can't change second to %d",second)
 	}
-	tms.second = second
+	tms.Second = second
 	return
 }
